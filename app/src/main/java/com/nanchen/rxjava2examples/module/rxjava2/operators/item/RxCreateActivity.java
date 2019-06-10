@@ -43,7 +43,7 @@ public class RxCreateActivity extends RxOperatorBaseActivity {
                 mRxOperatorsText.append("Observable emit 3" + "\n");
                 Log.e(TAG, "Observable emit 3" + "\n");
                 e.onNext(3);
-                e.onComplete();
+//                e.onComplete();
                 mRxOperatorsText.append("Observable emit 4" + "\n");
                 Log.e(TAG, "Observable emit 4" + "\n" );
                 e.onNext(4);

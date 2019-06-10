@@ -1,5 +1,6 @@
 package com.nanchen.rxjava2examples.module.rxjava2.operators.item;
 
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.nanchen.rxjava2examples.R;
@@ -28,14 +29,17 @@ public class RxDoOnNextActivity extends RxOperatorBaseActivity {
 
     @Override
     protected void doSomething() {
-        Observable.just(1, 2, 3, 4)
-                .doOnNext(new Consumer<Integer>() {
-                    @Override
-                    public void accept(@NonNull Integer integer) throws Exception {
-                        mRxOperatorsText.append("doOnNext 保存 " + integer + "成功" + "\n");
-                        Log.e(TAG, "doOnNext 保存 " + integer + "成功" + "\n");
-                    }
-                }).subscribe(new Consumer<Integer>() {
+        Observable<Integer> observable = Observable.just(1, 2, 3, 4);
+        Log.e(TAG, "doOnNext : observable = " + observable + "\n");
+        Observable<Integer> integerObservable = observable.doOnNext(new Consumer<Integer>() {
+            @Override
+            public void accept(@NonNull Integer integer) throws Exception {
+                mRxOperatorsText.append("doOnNext 保存 " + integer + "成功" + "\n");
+                Log.e(TAG, "doOnNext 保存 " + integer + "成功" + "\n");
+            }
+        });
+        SystemClock.sleep(5000);
+        integerObservable.subscribe(new Consumer<Integer>() {
             @Override
             public void accept(@NonNull Integer integer) throws Exception {
                 mRxOperatorsText.append("doOnNext :" + integer + "\n");

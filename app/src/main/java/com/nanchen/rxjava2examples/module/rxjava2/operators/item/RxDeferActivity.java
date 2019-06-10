@@ -1,5 +1,6 @@
 package com.nanchen.rxjava2examples.module.rxjava2.operators.item;
 
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.nanchen.rxjava2examples.R;
@@ -33,14 +34,15 @@ public class RxDeferActivity extends RxOperatorBaseActivity {
 
     @Override
     protected void doSomething() {
-
+        Log.e(TAG, "defer : doSomething" + "\n");
         Observable<Integer> observable = Observable.defer(new Callable<ObservableSource<Integer>>() {
             @Override
             public ObservableSource<Integer> call() throws Exception {
                 return Observable.just(1, 2, 3);
             }
         });
-
+        Log.e(TAG, "defer : observable = " + observable + "\n");
+        SystemClock.sleep(5000);
 
         observable.subscribe(new Observer<Integer>() {
             @Override

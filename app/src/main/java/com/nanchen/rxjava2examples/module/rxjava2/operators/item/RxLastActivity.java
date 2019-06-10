@@ -28,8 +28,8 @@ public class RxLastActivity extends RxOperatorBaseActivity {
 
     @Override
     protected void doSomething() {
-        Observable.just(1, 2, 3)
-                .last(4)
+        Observable.just(1,2,3)
+                .last(0)
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
